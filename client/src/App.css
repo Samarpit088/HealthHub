@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@font-face {
+  font-family: 'BodoniSC';
+  src: url('/fonts/Bodoni72SC.woff2') format('woff2'),
+       url('/fonts/Bodoni72SC.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-bodoni {
+  font-family: 'BodoniSC', serif;
+}
+
+@font-face {
+  font-family: 'Fredoka';
+  src: url('/fonts/Fredoka.woff2') format('woff2'),
+       url('/fonts/Fredoka.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-fredoka {
+  font-family: 'Fredoka', sans-serif;
+}
+
+@layer utilities {
+  .font-smallcaps {
+    font-variant: small-caps;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown{
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes comeBack {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .animate-slideUp {
+    animation: slideUp 1s ease-out forwards;
+  }
+
+  .animate-slideDown {
+    animation: slideDown 1s ease-out forwards;
+  }
+
+  .animate-comeBack {
+    animation: comeBack 1s ease-out forwards;
+  }
+
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 1s ease-out forwards;
+  }
+
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 1s ease-out forwards;
+  }
+}
+
+input[type='text'],input[type='password'],input[type='email']{
+  @apply w-full my-1 py-2 px-3 rounded-2xl bg-white text-[#06182B];
+}
+
+button.some{
+  @apply bg-[#C2D6E3] cursor-pointer;
+}
+
+button.primary{
+  @apply bg-[#C2D6E3] p-2 w-full rounded-2xl mt-2 cursor-pointer;
+}
+
