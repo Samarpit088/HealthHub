@@ -7,19 +7,18 @@ export default function LoginPage() {
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
     const { setUser } = useContext(UserContext);
+
     async function handleLoginSubmit(ev) {
         ev.preventDefault();
         try {
             const { data } = await axios.post('/login', { email, password });
-            setUser(data);
-            alert("Login successfull");
+            setUser(data.user); 
             setRedirect(true);
-        }
-        catch (e) {
-            alert('Login failed!');
-
+        } catch (error) {
+            console.error("Login failed:", error);
         }
     }
+
     if (redirect) {
         return <Navigate to={'/'} />;
     }
