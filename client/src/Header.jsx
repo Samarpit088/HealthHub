@@ -12,7 +12,7 @@ export default function Header() {
                         <path fill-rule="evenodd" d="M7 13.5H2V12h4z" clip-rule="evenodd" />
                     </g>
                 </svg>
-                <span className='font-fredoka font-bold text-2xl text-[#06182B]'>HealthHub</span>
+                    <span className='font-fredoka font-bold text-2xl text-[#06182B] '>HealthHub</span>
             </Link>
             <div className='flex gap-4 items-center'>
                 <Link to={'/about'} className='font-fredoka font-bold text-xl cursor-pointer text-[#06182B] hover:underline'>About</Link>
