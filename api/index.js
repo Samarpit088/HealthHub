@@ -30,6 +30,9 @@ app.get('/test', (req, res) => {
 
 app.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+        return res.status(400).json({ error: "All fields are required" });
+    }
     try {
         const userDoc = await User.create({
             name,
