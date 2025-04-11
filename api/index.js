@@ -9,10 +9,14 @@ const Booking = require('./models/Booking');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const app = express();
-
+const axios=require('axios');
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'asdfghjklpoiuytrxcvbnm';
+const { CohereClient } = require("cohere-ai");
 
+const cohere = new CohereClient({
+  token: process.env.COHERE_API_KEY, // or just paste the API key here for testing
+});
 
 app.use('/DocsPhotos', express.static(__dirname + '/DocsPhotos'));
 app.use(express.json());
@@ -144,8 +148,45 @@ app.get('/bookings', async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+app.delete('/bookings/:id', async (req, res) => {
+    const { id } = req.params;
+    await Booking.findByIdAndDelete(id);
+    res.json({ success: true });
+});
 
-
+app.post("/ask", async (req, res) => {
+    const { prompt } = req.body;
+  
+    try {
+        const response = await cohere.chat({
+            message: `The user describes their symptoms as: "${prompt}". Please reply ONLY in the following JSON format:
+          
+          {
+            "medicines": ["medicine1", "medicine2", "medicine3"],
+            "selfCare": ["tip1", "tip2", "tip3"]
+          }
+          
+          No explanation or extra text. Just return the pure JSON.`,
+          });
+          
+          const reply = response.text;
+          
+  
+      // Try parsing the JSON string from response
+      let parsed;
+      try {
+        parsed = JSON.parse(reply);
+      } catch (e) {
+        // fallback if response is not clean JSON
+        return res.json({ error: "Cohere response was not in expected JSON format", raw: cohereResponse.text });
+      }
+  
+      res.json(parsed);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Something went wrong" });
+    }
+  });
 
 
 

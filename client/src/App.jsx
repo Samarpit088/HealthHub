@@ -12,7 +12,7 @@ import AboutusPage from './pages/AboutusPage'
 import ContactPage from './pages/ContactPage'
 import AboutDoctors from './pages/AboutDoctors'
 import Book from './pages/Book'
-
+import HealthSuggest from "./pages/HealthSuggest";
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
 
@@ -31,10 +31,10 @@ function App() {
           <Route path={'/contact'} element={<ContactPage/>}/>
           <Route path={'/doctors/:specialization'} element={<AboutDoctors />} />
           <Route path={'/book'} element={<Book/>} />
+          <Route path="/health" element={<HealthSuggest />} />
         </Route>
       </Routes>
     </UserContextProvider>
   )
 }
-
 export default App

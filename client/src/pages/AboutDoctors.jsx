@@ -18,7 +18,14 @@ export default function AboutDoctors() {
         }
         fetchDoctors();
     }, [specialization]);
-
+    const handleDelete = async (bookingId) => {
+    try {
+        await axios.delete(`/bookings/${bookingId}`);
+        setBookings(prev => prev.filter(booking => booking._id !== bookingId));
+    } catch (error) {
+        console.error("Failed to delete booking:", error);
+    }
+};
     return (
         <div>
             <div className="flex justify-center mt-8 animate-slideDown">
