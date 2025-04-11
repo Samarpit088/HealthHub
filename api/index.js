@@ -194,3 +194,4 @@ app.listen(4000);
 
 //cjOUUavlElA8s5Vj
 //mongodb+srv://HealthHub:cjOUUavlElA8s5Vj@healthhub.kczvl.mongodb.net/?retryWrites=true&w=majority&appName=HealthHub
+// COHERE_API_KEY="YNolqhYvbtUwxHiIx2dNUwebgceUPdXj2Y93aKil"
