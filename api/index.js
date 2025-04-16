@@ -26,7 +26,8 @@ app.use(cors({
 }))
 app.use(cookieParser());
 
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL).then(() => console.log("MongoDB connected"))
+.catch(err => console.error("Connection error", err));
 
 app.get('/test', (req, res) => {
     res.json('test ok');
@@ -190,7 +191,9 @@ app.post("/ask", async (req, res) => {
 
 
 
-app.listen(4000);
+app.listen(4000,()=>{
+    console.log("Server is running on port 4000");
+});
 
 //cjOUUavlElA8s5Vj
 //mongodb+srv://HealthHub:cjOUUavlElA8s5Vj@healthhub.kczvl.mongodb.net/?retryWrites=true&w=majority&appName=HealthHub
