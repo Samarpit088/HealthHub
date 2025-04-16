@@ -101,7 +101,7 @@ export default function AppointmentsPage() {
                 <div className="ml-4">
                   <button
                     onClick={() => handleDelete(booking._id)}
-                    className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition duration-300"
+                    className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition duration-300 opacity-0 animate-fadeIn cursor-pointer font-fredoka"
                   >
                     Delete
                   </button>
